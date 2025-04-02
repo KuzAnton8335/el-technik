@@ -1,0 +1,14 @@
+@use "../../styles/base.scss" as *;
+
+.menu {
+	&__list {
+		display: flex;
+		align-items: center;
+		gap: 40px;
+	}
+
+	&__list-link {
+		font-weight: 500;
+		font-size: 18px;
+	}
+}

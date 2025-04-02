@@ -1,0 +1,30 @@
+@use "../../styles/base.scss" as *;
+
+.header {
+	padding-top: 19px;
+	padding-bottom: 19px;
+	border-bottom: 3px solid #e9ab74;
+
+	&__container {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	}
+
+	&__logo-link {
+		display: flex;
+		align-items: center;
+		gap: 10px;
+	}
+
+	&__logo-link-text {
+		font-weight: 500;
+		font-size: 18px;
+		color: #000;
+	}
+
+	&__buttons {
+		display: flex;
+		gap: 10px;
+	}
+}
