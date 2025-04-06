@@ -1,0 +1,22 @@
+.footer {
+	padding-block: 15px;
+	border-top: 3px solid #e9ab74;
+
+	&__menu {
+		display: flex;
+		align-items: center;
+		gap: 215px;
+		padding-bottom: 15px;
+	}
+
+	&__copy {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	}
+
+	&-social__menu {
+		display: flex;
+		align-items: center;
+	}
+}

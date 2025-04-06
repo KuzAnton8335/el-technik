@@ -1,0 +1,16 @@
+.main {
+	flex-grow: 1;
+	padding-bottom: 50px;
+
+	&__search {
+		display: flex;
+		align-items: center;
+		justify-content: right;
+	}
+
+	&__wrapper {
+		display: flex;
+		align-items: center;
+		gap: 25px;
+	}
+}

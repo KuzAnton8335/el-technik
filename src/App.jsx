@@ -1,11 +1,7 @@
-import { Header } from './layouts/Header/Header';
+import { IndexPage } from './pages/Index';
 
 const App = () => {
-	return (
-		<div className="App">
-			<Header />
-		</div>
-	);
+	return <IndexPage />;
 };
 
 export default App;

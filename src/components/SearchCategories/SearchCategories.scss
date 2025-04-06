@@ -1,0 +1,40 @@
+.search {
+	position: relative;
+	&__categories {
+		margin-top: 30px;
+		margin-bottom: 30px;
+		width: 497px;
+		height: 48px;
+		border: 2px solid #e9ab74;
+		border-radius: 16px;
+
+		&::placeholder {
+			font-size: 18px;
+		}
+	}
+
+	&__icon {
+		position: absolute;
+		left: 10px;
+		top: 50%;
+		transform: translateY(-50%);
+		z-index: 1;
+	}
+}
+
+.placeholder {
+	position: absolute;
+	left: 45px;
+	top: 50%;
+	transform: translateY(-50%);
+	color: #aaa;
+	pointer-events: none;
+	transition: 0.2s;
+}
+
+.search__categories:focus + .placeholder,
+.placeholder.focused {
+	top: 0;
+	font-size: 0;
+	color: #333;
+}

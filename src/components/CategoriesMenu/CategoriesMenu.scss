@@ -1,0 +1,25 @@
+.categories {
+	border: 1px solid #e9ab74;
+	border-radius: 12px;
+	width: 443px;
+	height: 768px;
+	background: rgba(233, 171, 116, 0.45);
+	padding-top: 50px;
+	padding-left: 112px;
+
+	&-title {
+		font-weight: 500;
+		font-size: 18px;
+		color: #000;
+		padding-bottom: 30px;
+	}
+
+	&-list {
+		display: flex;
+		flex-direction: column;
+		gap: 40px;
+	}
+	&-link {
+		font-weight: 500;
+	}
+}
