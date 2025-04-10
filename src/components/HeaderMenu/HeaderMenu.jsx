@@ -1,37 +1,45 @@
+import { NavLink } from 'react-router-dom';
 import './HeaderMenu.scss';
 export const HeaderMenu = () => {
 	return (
 		<nav className="menu">
 			<ul className="menu__list">
 				<li className="menu__list-item">
-					<a href="#" className="menu__list-link">
+					<NavLink to="/" className="menu__list-link menu__list-link-active">
 						Главная
-					</a>
+					</NavLink>
 				</li>
 				<li className="menu__list-item">
-					<a href="#" className="menu__list-link">
+					<NavLink
+						to="/catalog"
+						className="menu__list-link menu__list-link-active"
+					>
 						Каталог
-					</a>
+					</NavLink>
 				</li>
 				<li className="menu__list-item">
-					<a href="#" className="menu__list-link">
-						О Нас
-					</a>
-				</li>
-				<li className="menu__list-item">
-					<a href="#" className="menu__list-link">
+					<NavLink
+						to="/contacts"
+						className="menu__list-link menu__list-link-active"
+					>
 						Контакты
-					</a>
+					</NavLink>
 				</li>
 				<li className="menu__list-item">
-					<a href="#" className="menu__list-link">
+					<NavLink
+						to="/cart"
+						className="menu__list-link menu__list-link-active"
+					>
 						Корзина
-					</a>
+					</NavLink>
 				</li>
 				<li className="menu__list-item">
-					<a href="#" className="menu__list-link">
+					<NavLink
+						to="/admin"
+						className="menu__list-link menu__list-link-active"
+					>
 						Админ панель
-					</a>
+					</NavLink>
 				</li>
 			</ul>
 		</nav>

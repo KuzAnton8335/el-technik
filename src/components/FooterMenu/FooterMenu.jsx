@@ -1,17 +1,18 @@
+import { NavLink } from 'react-router-dom';
 import './FooterMenu.scss';
 
 export const FooterMenu = () => {
 	return (
 		<nav className="navigation">
-			<a href="/about" className="navigation__link">
+			<NavLink to="/about" className="navigation__link navigation__link-active">
 				О нас
-			</a>
-			<a href="/contact" className="navigation__link">
+			</NavLink>
+			<NavLink to="/contacts" className="navigation__link navigation__link-active">
 				Контакты
-			</a>
-			<a href="/privacy" className="navigation__link">
+			</NavLink>
+			<NavLink to="/politics" className="navigation__link navigation__link-active">
 				Политика конфиденциальности
-			</a>
+			</NavLink>
 		</nav>
 	);
 };
