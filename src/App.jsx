@@ -1,6 +1,7 @@
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import AboutAs from './pages/AboutAs';
 import AdminPanel from './pages/AdminPanel';
+import CardPage from './pages/CardPage';
 import Cart from './pages/Cart';
 import Catalog from './pages/Catalog';
 import Contacts from './pages/Contacts';
@@ -18,6 +19,7 @@ const App = () => {
 				<Route path="/admin" element={<AdminPanel />} />
 				<Route path="/about" element={<AboutAs />} />
 				<Route path="/politics" element={<Politics />} />
+				<Route path="/cardPage" element={<CardPage />} />
 			</Routes>
 		</Router>
 	);
