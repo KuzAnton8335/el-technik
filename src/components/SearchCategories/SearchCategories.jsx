@@ -6,9 +6,6 @@ export const SearchCategories = () => {
 	const [isFocused, setIsFocused] = useState('');
 	return (
 		<div className="search">
-			<div className="search__icon">
-				<img src={seacrhIcon} alt="search icon" />
-			</div>
 			<input
 				type="search"
 				className="search__categories"
@@ -16,6 +13,9 @@ export const SearchCategories = () => {
 				onFocus={() => setIsFocused(true)}
 				onBlur={() => setIsFocused(false)}
 			/>
+			<button className="search__categories-button">
+				<img src={seacrhIcon} alt="иконка поиска" />
+			</button>
 			<label className={`placeholder ${isFocused ? 'focused' : ''}`}>
 				Поиск в El.Technic
 			</label>
