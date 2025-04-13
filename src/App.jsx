@@ -7,6 +7,8 @@ import Catalog from './pages/Catalog';
 import Contacts from './pages/Contacts';
 import { IndexPage } from './pages/Index';
 import Politics from './pages/Politics';
+import LoginPage from './pages/LoginPage';
+import RegistrationPage from './pages/registrationPage';
 
 const App = () => {
 	return (
@@ -14,6 +16,8 @@ const App = () => {
 			<Routes>
 				<Route path="/" element={<IndexPage />} />
 				<Route path="/catalog" element={<Catalog />} />
+				<Route path="/login" element={<LoginPage />} />
+				<Route path="/registration" element={<RegistrationPage />} />
 				<Route path="/contacts" element={<Contacts />} />
 				<Route path="/cart" element={<Cart />} />
 				<Route path="/admin" element={<AdminPanel />} />
