@@ -1,4 +1,4 @@
-import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
+import { Route,  Routes } from 'react-router-dom';
 import AboutAs from './pages/AboutAs';
 import AdminPanel from './pages/AdminPanel';
 import CardPage from './pages/CardPage';
@@ -12,7 +12,6 @@ import RegistrationPage from './pages/registrationPage';
 
 const App = () => {
 	return (
-		<Router>
 			<Routes>
 				<Route path="/" element={<IndexPage />} />
 				<Route path="/catalog" element={<Catalog />} />
@@ -25,7 +24,6 @@ const App = () => {
 				<Route path="/politics" element={<Politics />} />
 				<Route path="/cardPage" element={<CardPage />} />
 			</Routes>
-		</Router>
 	);
 };
 

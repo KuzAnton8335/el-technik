@@ -4,6 +4,7 @@ import { SearchCategories } from '../../components/SearchCategories/SearchCatego
 import { SelectCategories } from '../../components/SelectCategories/SelectCategories';
 import './MainSection.scss';
 
+
 export const MainSection = () => {
 	return (
 		<main className="main">

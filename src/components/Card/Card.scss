@@ -17,6 +17,11 @@
 		gap: 20px;
 	}
 
+	&__images{
+		width: 100%;
+		max-width: 160px;
+	}
+
 	&__info {
 		display: flex;
 		flex-direction: column;
