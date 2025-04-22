@@ -1,2 +1,2 @@
-import CardPrice from './CardPage.jsx';
-export default CardPrice;
+import CardPage from './CardPage.jsx';
+export default CardPage;

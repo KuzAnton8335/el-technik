@@ -1,6 +1,3 @@
-
-import { FETCH_PRODUCTS_REQUEST, FETCH_PRODUCTS_SUCCESS, FETCH_PRODUCTS_FAILURE } from '../actions/actionProducts.js';
-
 const initialState = {
 	loading: false,
 	products: [],
