@@ -11,10 +11,16 @@ export const Card = () => {
 	const loading = useSelector(state => state.products?.loading)
 	const error = useSelector(state => state.products?.error)
 
-
 	useEffect(() => {
 		dispatch(fetchProductsAction  ());
 	}, [dispatch]);
+
+	// функция получения 4 случайных продуктов
+	const getRandomProducts = (items, count) => {
+		// создаем копию исходного массива
+		const shuffled = [...items].sort(() => 0.5 - Math.random());
+		return shuffled.slice(0, count);
+	}
 
 	if (loading) {
 		return <Loader/>;
@@ -24,10 +30,14 @@ export const Card = () => {
 		return <div>Error: {error?.message || 'Неизвестная ошибка'}</div>;
 	}
 
+	// получаем 4 случайных продукта
+	const randomProducts = products.length > 4
+	? getRandomProducts(products, 4) : products;
+
 	return (
 		<div className="card-list">
-			{Array.isArray(products) && products.length > 0 ? (
-				products.map(card => (
+			{Array.isArray(randomProducts) && randomProducts.length > 0 ? (
+				randomProducts.map(card => (
 					<article className="card" key={card.id}>
 						<div className="card__content">
 							<div className="card__images">
@@ -45,7 +55,7 @@ export const Card = () => {
 								</p>
 							</div>
 							<div className="card__buttons">
-								<ButtonEnter name="Открыть карточку"/>
+								<ButtonEnter name="Открыть карточку" to={`/products/${card.id}`}/>
 							</div>
 						</div>
 					</article>

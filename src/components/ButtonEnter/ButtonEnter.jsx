@@ -1,6 +1,18 @@
 import './ButtonEnter.scss';
+import {Link} from 'react-router-dom';
 
-export const ButtonEnter = (props) => {
-	const { name } = props;
-	return <button className="btnEnter">{name}</button>;
+export const ButtonEnter = ({name,to,onClick}) => {
+	if (to) {
+		return (
+			<Link to={to} className="btnEnter">
+				{name}
+			</Link>
+		);
+	}
+
+	return (
+		<button className="btnEnter" onClick={onClick}>
+			{name}
+		</button>
+	);
 };

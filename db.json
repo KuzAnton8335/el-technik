@@ -54,10 +54,8 @@
 		"description": "Реле электротепловое токовое РТИ-1307 1.6-2.5А DRT10-D016-D025 IEK Номинальный ток, А 1.6-2.5 Диапазон уставок реле, А\t1.6-2.5 Количество силовых полюсов\t3 Диапазон рабочих температур\tот -45 до +55",
 		"price": "2300",
 		"quantity": "25",
-		"image": "/src/assets/images/card-img-6.jpg"
+		"image": "/src/assets/images/card-img-12.jpg"
 	},
-
-
 	{
 		"id": "48",
 		"category": "cable",
@@ -112,7 +110,7 @@
 		"description": "Назначение, применение: снятие изоляции, разделка оболочки с проводов и кабелей",
 		"price": "749",
 		"quantity": "35",
-		"image": "/src/assets/images/card-img-10.jpg"
+		"image": "/src/assets/images/card-img-11.jpg"
 	}
  ]
 }

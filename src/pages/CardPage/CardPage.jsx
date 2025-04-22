@@ -3,44 +3,75 @@ import { SearchCategories } from '../../components/SearchCategories/SearchCatego
 import { Footer } from '../../layouts/Footer/Footer';
 import { Header } from '../../layouts/Header/Header';
 import './CardPage.scss';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchProductsAction } from '../../actions/actionProducts';
+import { Loader } from "../../components/Loader/Loader";
 
 const CardPage = () => {
+	const dispatch = useDispatch();
+	const products = useSelector(state => state.products?.products ?? []);
+	const loading = useSelector(state => state.products?.loading);
+	const error = useSelector(state => state.products?.error);
+
+	useEffect(() => {
+		dispatch(fetchProductsAction());
+	}, [dispatch]);
+
+	if (loading) {
+		return <Loader/>;
+	}
+
+	if (error) {
+		console.error(error);
+		return <div>Error: {error?.message || 'Неизвестная ошибка'}</div>;
+	}
+
+	if (!Array.isArray(products) || products.length === 0) {
+		return <div>Нет доступных продуктов</div>;
+	}
+
 	return (
 		<div className="cardPage">
 			<Header />
 			<div className="cardPage__wrapper">
 				<div className="container cardPage__container">
 					<SearchCategories />
-					<section className="cardPage__content">
-						<h2 className="cardPage__title">Описание товара</h2>
-						<div className="cardPage__content-card">
-							<div className="cardPage__content-images">
-								<img
-									src="/src/assets/images/card-img-1.jpg"
-									alt="product"
-									className="cardPage__content-image"
-									width={328}
-									height={243}
-								/>
+					{products.map((product) => (
+						<section key={product.id} className="cardPage__content">
+							<h2 className="cardPage__title">{product.title}</h2>
+							<div className="cardPage__content-card">
+								<div className="cardPage__content-images">
+									<img
+										src={product.image }
+										alt="product"
+										className="cardPage__content-image"
+										width={328}
+										height={243}
+									/>
+								</div>
+								<div className="cardPage__content-info">
+									<h3 className="cardPage__subtitle">
+										{product.subtitle}
+									</h3>
+									<p className="cardPage__quantity">
+										{product.quantity}
+									</p>
+									<p className="cardPage__description">
+										{product.description ||
+											"Электродвигатель трехфазный АИР 90L4 380В 2,2кВт 1500 об/мин 2081 DRIVE DRV090-L4-002-2-1520 ONI"}
+									</p>
+									<p className="cardPage__price">
+										{product.price }
+									</p>
+								</div>
+								<div className="cardPage__buttons">
+									<ButtonEnter name="Купить" />
+								</div>
 							</div>
-							<div className="cardPage__content-info">
-								<h3 className="cardPage__subtitle">
-									Электродвигатель Асинхронный
-								</h3>
-								<p className="cardPage__quantity">Количество: 12шт</p>
-								<p className="cardPage__description">
-									Электродвигатель трехфазный АИР 90L4 380В 2,2кВт
-									1500&nbsp;об/мин 2081&nbsp;DRIVE
-									DRV090-L4-002-2-1520&nbsp;ONI
-								</p>
-								<p className="cardPage__price">Стоимость: 7000 ₽</p>
-							</div>
-							<div className="cardPage__buttons">
-								<ButtonEnter name="Купить" />
-							</div>
-						</div>
-						<p className="cardPage__id"> id Товара</p>
-					</section>
+							<p className="cardPage__id">id Товара: {product.id}</p>
+						</section>
+					))}
 				</div>
 			</div>
 			<Footer />
