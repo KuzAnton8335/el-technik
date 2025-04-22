@@ -5,21 +5,24 @@ import { Header } from '../../layouts/Header/Header';
 import './CardPage.scss';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchProductsAction } from '../../actions/actionProducts';
-import { Loader } from "../../components/Loader/Loader";
+import { fetchProductByIdAction } from '../../actions/actionProducts';
+import { Loader } from '../../components/Loader/Loader';
+import { useParams } from 'react-router-dom';
 
 const CardPage = () => {
+	const { id } = useParams();
 	const dispatch = useDispatch();
-	const products = useSelector(state => state.products?.products ?? []);
-	const loading = useSelector(state => state.products?.loading);
-	const error = useSelector(state => state.products?.error);
+	const product = useSelector(state => state.products?.products ?? []);
+	const loading = useSelector(state => state.products.loading);
+	const error = useSelector(state => state.products.error);
 
 	useEffect(() => {
-		dispatch(fetchProductsAction());
-	}, [dispatch]);
+		dispatch(fetchProductByIdAction(id));
+	}, [dispatch, id]);
+
 
 	if (loading) {
-		return <Loader/>;
+		return <Loader />;
 	}
 
 	if (error) {
@@ -27,8 +30,8 @@ const CardPage = () => {
 		return <div>Error: {error?.message || 'Неизвестная ошибка'}</div>;
 	}
 
-	if (!Array.isArray(products) || products.length === 0) {
-		return <div>Нет доступных продуктов</div>;
+	if (!product) {
+		return <div>Товар не найден</div>;
 	}
 
 	return (
@@ -37,13 +40,12 @@ const CardPage = () => {
 			<div className="cardPage__wrapper">
 				<div className="container cardPage__container">
 					<SearchCategories />
-					{products.map((product) => (
 						<section key={product.id} className="cardPage__content">
 							<h2 className="cardPage__title">{product.title}</h2>
 							<div className="cardPage__content-card">
 								<div className="cardPage__content-images">
 									<img
-										src={product.image }
+										src={product.image}
 										alt="product"
 										className="cardPage__content-image"
 										width={328}
@@ -58,12 +60,9 @@ const CardPage = () => {
 										{product.quantity}
 									</p>
 									<p className="cardPage__description">
-										{product.description ||
-											"Электродвигатель трехфазный АИР 90L4 380В 2,2кВт 1500 об/мин 2081 DRIVE DRV090-L4-002-2-1520 ONI"}
+										{product.description}
 									</p>
-									<p className="cardPage__price">
-										{product.price }
-									</p>
+									<p className="cardPage__price">{product.price}</p>
 								</div>
 								<div className="cardPage__buttons">
 									<ButtonEnter name="Купить" />
@@ -71,7 +70,6 @@ const CardPage = () => {
 							</div>
 							<p className="cardPage__id">id Товара: {product.id}</p>
 						</section>
-					))}
 				</div>
 			</div>
 			<Footer />

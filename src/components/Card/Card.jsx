@@ -55,7 +55,7 @@ export const Card = () => {
 								</p>
 							</div>
 							<div className="card__buttons">
-								<ButtonEnter name="Открыть карточку" to={`/products/${card.id}`}/>
+								<ButtonEnter name="Открыть карточку" productId={card.id}/>
 							</div>
 						</div>
 					</article>

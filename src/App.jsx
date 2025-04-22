@@ -22,7 +22,7 @@ const App = () => {
 				<Route path="/admin" element={<AdminPanel />} />
 				<Route path="/about" element={<AboutAs />} />
 				<Route path="/politics" element={<Politics />} />
-				<Route path="/products" element={<CardPage />} />
+				<Route path="/products/:id" element={<CardPage />} />
 			</Routes>
 	);
 };

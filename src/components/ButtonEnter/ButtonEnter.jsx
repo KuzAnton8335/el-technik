@@ -1,17 +1,14 @@
 import './ButtonEnter.scss';
-import {Link} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 
-export const ButtonEnter = ({name,to,onClick}) => {
-	if (to) {
-		return (
-			<Link to={to} className="btnEnter">
-				{name}
-			</Link>
-		);
-	}
+export const ButtonEnter = ({name,productId}) => {
+	const navigate = useNavigate();
+	const handleClick = () => {
+		navigate(`/products/${productId}`);
+	};
 
 	return (
-		<button className="btnEnter" onClick={onClick}>
+		<button className="btnEnter" onClick={handleClick}>
 			{name}
 		</button>
 	);
