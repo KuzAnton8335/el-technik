@@ -21,7 +21,7 @@ const CardPage = () => {
 	}, [dispatch, id]);
 
 	if (loading) {
-		return <Loader />;
+		return <Loader className="loader" />;
 	}
 
 	if (error) {

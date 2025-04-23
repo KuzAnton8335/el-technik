@@ -3,8 +3,8 @@ import { HeaderLogo } from '../../components/HeaderLogo/HeaderLogo';
 import './Footer.scss';
 
 export const Footer = () => {
-	const vkIcon = ['./src/assets/Icons/vk.svg'];
-	const telegramIcon = ['./src/assets/Icons/telegram.svg'];
+	const vkIcon = ['../src/assets/Icons/vk.svg'];
+	const telegramIcon = ['../src/assets/Icons/telegram.svg'];
 
 	return <footer className="footer">
 		<div className="container">

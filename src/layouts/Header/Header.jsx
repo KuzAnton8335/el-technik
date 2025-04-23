@@ -3,6 +3,7 @@ import { ButtonReg } from '../../components/ButtonReg/ButtonReg';
 import { HeaderLogo } from '../../components/HeaderLogo/HeaderLogo';
 import { HeaderMenu } from '../../components/HeaderMenu/HeaderMenu';
 import './Header.scss';
+import { NavLink } from 'react-router-dom';
 
 export const Header = () => {
 	return (
@@ -11,8 +12,12 @@ export const Header = () => {
 				<HeaderLogo />
 				<HeaderMenu />
 				<div className="header__buttons">
-					<ButtonEnter name="Войти" />
-					<ButtonReg name="Регистрация" />
+					<NavLink to="/login">
+						<ButtonEnter name="Войти"  />
+					</NavLink>
+					<NavLink to="/registration">
+						<ButtonReg name="Регистрация" />
+					</NavLink>
 				</div>
 			</div>
 		</header>

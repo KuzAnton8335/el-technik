@@ -1,4 +1,5 @@
 .cardPage {
+	position: relative;
 	&__wrapper {
 		margin-bottom: 45px;
 	}
@@ -38,17 +39,18 @@
 	}
 
 	&__quantity {
-		padding-bottom: 13px;
+		padding-bottom: 16px;
 	}
 
 	&__description {
-		max-width: 329px;
+		max-width: 395px;
 		width: 100%;
 		padding-bottom: 13px;
+		font-size: 14px;
 	}
 
 	&__price {
-		font-size: 16px;
+		font-size: 20px;
 	}
 	&__buttons {
 		margin-left: auto;
@@ -60,4 +62,11 @@
 	&__id {
 		justify-self: end;
 	}
+}
+
+.loader{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
 }

@@ -2,7 +2,7 @@ import { useState } from 'react';
 import './SearchCategories.scss';
 
 export const SearchCategories = () => {
-	const seacrhIcon = ['./src/assets/Icons/search-icon.svg'];
+	const seacrhIcon = ['../src/assets/Icons/search-icon.svg'];
 	const [isFocused, setIsFocused] = useState('');
 	return (
 		<div className="search">

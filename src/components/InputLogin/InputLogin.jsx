@@ -1,8 +1,10 @@
 import "./inputLogin.scss";
 
-export const InputLogin = (props) => {
-	const { placeholder } = props;
+export const InputLogin = ({placeholder,...props},ref ) => {
 	return (
-		<input type="text" className="inputLogin" placeholder={placeholder} />
+		<input type="text" className="inputLogin"
+			   placeholder={placeholder}
+			   ref={ref}
+			   {...props}/>
 	)
 }
