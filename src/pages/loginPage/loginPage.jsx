@@ -8,19 +8,18 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { useDispatch } from 'react-redux';
-import { useState } from 'react';
+import {useState} from 'react'
+import {NavLink} from 'react-router-dom';
 
-// схема валидации формы ввода данных для формы входа при помощи библиотеки yup
+// схема валидации с помощью yup
 const loginSchema = yup.object().shape({
-	login: yup
-	.string()
-	.required("Заполните поле ввода логина")
-	.matches (/^\w+$/, 'Неверный логин. Допускаются только буквы и цифры')
+	login: yup.string()
+		.required('Введите логин')
+		.matches(/^\w+$/, 'Неверный логин. Допускаются только буквы и цифры')
 		.min(3, 'Неверный логин. Минимум 3 символа')
 		.max(15, 'Неверный логин. Максимум 15 символов'),
-	password: yup
-		.string()
-		.required("Заполните поле ввода пароля")
+	password: yup.string()
+		.required('Введите пароль')
 		.matches(
 			/^[\w#%]+$/,
 			'Неверный пароль. Допускаются только буквы, цифры, и знаки # %',
@@ -29,39 +28,28 @@ const loginSchema = yup.object().shape({
 		.max(30, 'Неверно заполнено  поля пароля,  Максимум 30 символов'),
 })
 
-
 const LoginPage = () => {
-	// функция dispatch
+const [serverError, setServerError] = useState(null)
 	const dispatch = useDispatch();
-	// переменные для работы формы авторизации
-	const {
-		register,
-		handleSubmit,
-		formState: { errors },
-	} = useForm({
-		defaultValues: {
-			login: '',
-			password: '',
-		},
-		resolver: yupResolver(loginSchema),
-	});
 
-	//  переменная для вывода ошибок сервера
-	const [serverError, setServerError] = useState(null);
-	// обработка ошибки сервера на форме авторизации
-	const onSubmit = ({ login, password }) => {
-		server.authorize(login, password).then(({ error, res }) => {
-			if (error) {
-				setServerError(`Ошибка запроса:${error}`);
-				return;
-			}
-			dispatch(setUser(res));
-		});
+const {
+	register,
+	handleSubmit,
+	formState: { errors },
+	reset,
+} = useForm({
+	resolver: yupResolver(loginSchema),
+	mode:'onChange'
+})
+
+	const onSubmit = (data) => {
+		console.log('Форма отправлена:', data);
+		// Здесь можно добавить логику отправки данных на сервер
+		// dispatch(someAuthAction(data))
+		//   .unwrap()
+		//   .catch(err => setServerError(err.message));
+		reset();
 	};
-	// ошибки формы авторизации
-	const formError = errors?.login?.message || errors?.password?.message;
-	// ошибки сервера при авторизации
-	const errorMessage = formError || serverError;
 
 	return (
 		<div className="loginPage">
@@ -73,21 +61,23 @@ const LoginPage = () => {
 					</div>
 					<div className="loginPage__login">
 						<h2 className="loginPage__title">Вход</h2>
-						<form className="loginPage__form">
+						<form className="loginPage__form" onSubmit={handleSubmit(onSubmit)}>
 							<label className="loginPage__label">Введите логин</label>
-							<InputLogin placeholder="Логин" value={'login'} {...register('login', {
+							<InputLogin placeholder="Логин" {...register('login', {
 								onChange: () => setServerError(null),
 							})}/>
 							{errors.login && <span className="loginPage__error">{errors.login.message}</span>}
 							<label className="loginPage__label">Введите пароль</label>
-							<InputPassword placeholder="Пароль" value={ 'password'} {...register('password', {
+							<InputPassword placeholder="Пароль" {...register('password', {
 								onChange: () => setServerError(null),
 							})}/>
 							{errors.password && <span className="loginPage__error">{errors.password.message}</span>}
+
+							{serverError && <span className="loginPage__error">{serverError}</span>}
 							<button className="loginPage__Enter">Войти</button>
 						</form>
 						<div className="loginPage__links">
-							<a href="#" className="loginPage__link">Зарегистрироваться</a>
+							<NavLink  className="loginPage__link" to="/registration">Зарегистрироваться</NavLink>
 						</div>
 					</div>
 				</div>

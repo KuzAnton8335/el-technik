@@ -1,12 +1,16 @@
 import "./inputPassword.scss";
 
 
-export const InputPassword = ({placeholder,...props},ref) => {
+export const InputPassword = ({placeholder,error,...props},ref) => {
 
 	return (
-		<input type="password" className="inputPassword"
-			   placeholder={placeholder}
-			   ref={ref}
-			   {...props} />
+		<div>
+			<input type="password" className="inputPassword"
+				   placeholder={placeholder}
+				   ref={ref}
+				   {...props} />
+			{error && <span className="error-message">{error}</span>}
+		</div>
+
 	)
 }

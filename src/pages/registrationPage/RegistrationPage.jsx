@@ -4,11 +4,58 @@ import { Footer } from '../../layouts/Footer/Footer.jsx';
 import { ButtonExit } from '../../components/ButtonExit/ButtonExit.jsx';
 import { InputLogin } from '../../components/InputLogin/InputLogin.jsx';
 import { InputPassword } from '../../components/InputPassword/InputPassword.jsx';
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from 'yup';
+import { useDispatch } from 'react-redux';
+import { useState } from 'react';
+
+// схема регистрации пользователя при помощи yup
+const regFormShema = yup.object().shape({
+	login: yup
+		.string()
+		.required('Заполните поле логина')
+		.matches(/^\w+$/, 'Неверный логин. Допускаются только буквы и цифры')
+		.min(3, 'Неверный логин. Минимум 3 символа')
+		.max(15, 'Неверный логин. Максимум 15 символов'),
+
+	password: yup
+		.string()
+		.required('Заполните поле пароля')
+		.matches(
+			/^[\w#%]+$/,
+			'Неверный пароль. Допускаются только буквы, цифры, и знаки # %',
+		)
+		.min(6, 'Неверно заполнено поле пароля, пароль должен быть не менее 6 символов')
+		.max(30, 'Неверно заполнено поле пароля, максимум 30 символов'),
+	passcheck: yup
+		.string()
+		.required('Заполните повтор пароля')
+		.oneOf([yup.ref('password'), null], 'Пароли не совпадают'),
+});
 
 const RegistrationPage = () => {
+	const [serverError, setServerError] = useState(null);
+	const dispatch = useDispatch();
+
+	const {
+		register,
+		handleSubmit,
+		formState: { errors },
+	} = useForm({
+		resolver: yupResolver(regFormShema),
+		mode: 'onChange', // или 'onBlur' для валидации при потере фокуса
+	});
+
+	const onSubmit = (data) => {
+		console.log('Форма отправлена:', data);
+		// Здесь можно добавить логику отправки данных на сервер
+		// dispatch(registerUser(data));
+	};
+
 	return (
 		<div className="registrationPage">
-			<Header/>
+			<Header />
 			<div className="container">
 				<div className="registrationPage__wrapper">
 					<div className="registrationPage__exit">
@@ -16,19 +63,39 @@ const RegistrationPage = () => {
 					</div>
 					<div className="registrationPage__login">
 						<h2 className="registrationPage__title">Зарегистрироваться</h2>
-						<form className="registrationPage__form">
+						{serverError && <div className="registrationPage__serverError">{serverError}</div>}
+						<form className="registrationPage__form" onSubmit={handleSubmit(onSubmit)}>
 							<label className="registrationPage__label">Введите логин</label>
-							<InputLogin placeholder="Логин" />
+							<InputLogin
+								placeholder="Логин"
+								{...register('login')}
+								error={errors.login?.message}
+							/>
+
 							<label className="registrationPage__label">Введите пароль</label>
-							<InputPassword placeholder="Пароль" />
-							<button className="registrationPage__Enter">Регистрация</button>
+							<InputPassword
+								placeholder="Пароль"
+								{...register('password')}
+								error={errors.password?.message}
+							/>
+
+							<label className="registrationPage__label">Повторите пароль</label>
+							<InputPassword
+								placeholder="Повторите пароль"
+								{...register('passcheck')}
+								error={errors.passcheck?.message}
+							/>
+
+							<button type="submit" className="registrationPage__Enter">
+								Регистрация
+							</button>
 						</form>
 					</div>
 				</div>
 			</div>
 			<Footer />
 		</div>
-	)
-}
+	);
+};
 
 export default RegistrationPage;

@@ -17,7 +17,7 @@
 	}
 	&__login{
 		position: absolute;
-		top:118px;
+		top:56px;
 		left:50%;
 		transform: translate(-50%);
 	}
@@ -52,5 +52,17 @@
 	&__links{
 		margin-top: 24px;
 		text-align: center;
+	}
+
+	&__error{
+		width: 100%;
+		max-width: 330px;
+		text-align: center;
+		margin-top: 5px;
+		padding-top: 5px;
+		padding-bottom: 5px;
+		font-size: 14px;
+		color:white;
+		background-color: #D64747;
 	}
 }
