@@ -1,0 +1,39 @@
+.tableproducts{
+	margin-top: 50px;
+    display: flex;
+	flex-direction: column;
+	&__table{
+		display: flex;
+		flex-direction: column;
+		border: 2px solid #e9ab74;
+		border-radius: 12px;
+		background: rgba(233, 171, 116, 0.13);
+		width: 896px;
+		height: 806px;
+	}
+	&__title{
+		padding-top: 11px;
+		padding-bottom: 11px;
+       	text-align: center;
+		font-weight: 500;
+		font-size: 20px;
+		color: #000;
+	}
+
+	&__thead-list{
+		display: flex;
+		align-items: center;
+		justify-content: space-around;
+		border: 1px solid #e9ab74;
+		border-radius: 12px;
+		padding: 12px 0;
+		margin-left: 25px;
+		margin-right: 25px;
+		background: #fff;
+	}
+
+	&__thead-list-item{
+
+	}
+
+}

@@ -1,6 +1,5 @@
 import { Route,  Routes } from 'react-router-dom';
 import AboutAs from './pages/AboutAs';
-import AdminPanel from './pages/AdminPanel';
 import CardPage from './pages/CardPage';
 import Cart from './pages/Cart';
 import Catalog from './pages/Catalog';
@@ -9,6 +8,7 @@ import { IndexPage } from './pages/Index';
 import Politics from './pages/Politics';
 import LoginPage from './pages/LoginPage';
 import RegistrationPage from './pages/registrationPage';
+import ProductPanel from './pages/ProductPanel';
 
 const App = () => {
 	return (
@@ -19,7 +19,7 @@ const App = () => {
 				<Route path="/registration" element={<RegistrationPage />} />
 				<Route path="/contacts" element={<Contacts />} />
 				<Route path="/cart" element={<Cart />} />
-				<Route path="/admin" element={<AdminPanel />} />
+				<Route path="/productpanel" element={<ProductPanel />} />
 				<Route path="/about" element={<AboutAs />} />
 				<Route path="/politics" element={<Politics />} />
 				<Route path="/products/:id" element={<CardPage />} />

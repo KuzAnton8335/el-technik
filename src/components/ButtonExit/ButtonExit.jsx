@@ -1,8 +1,11 @@
 import "./ButtonExit.scss";
+import {useNavigate} from 'react-router-dom';
 
 export const ButtonExit = () => {
+	const navigate = useNavigate();
+	const goBack = () => { navigate('/'); };
 	return (
-		<button className="buttonExit">
+		<button className="buttonExit" onClick={goBack}>
 			<svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
 				<path
 					d="M25 22.6165C25 23.933 23.933 25 22.6165 25H2.3835C1.067 25 0 23.933 0 22.6165V2.3835C0 1.067 1.067 0 2.3835 0H22.6165C23.933 0 25 1.067 25 2.3835V22.6165Z"

@@ -35,7 +35,7 @@ export const HeaderMenu = () => {
 				</li>
 				<li className="menu__list-item">
 					<NavLink
-						to="/admin"
+						to="/productpanel"
 						className="menu__list-link menu__list-link-active"
 					>
 						Админ панель
