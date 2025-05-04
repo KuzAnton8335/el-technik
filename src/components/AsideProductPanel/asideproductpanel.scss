@@ -1,6 +1,5 @@
-.aside{
-
-	&__sidebar{
+.aside {
+	&__sidebar {
 		margin-top: 50px;
 		margin-bottom: 50px;
 		width: 100%;
@@ -11,14 +10,14 @@
 		border-radius: 12px;
 	}
 
-	&__title{
+	&__title {
 		padding-top: 21px;
 		text-align: center;
 		font-weight: 500;
 		font-size: 20px;
 		color: #000;
 	}
-	&__form-sidebar{
+	&__form-sidebar {
 		padding-top: 37px;
 		padding-left: 22px;
 		padding-right: 33px;
@@ -26,22 +25,22 @@
 		flex-direction: column;
 	}
 
-	&__form-sidebar-label{
+	&__form-sidebar-label {
 		padding-bottom: 10px;
 		font-weight: 500;
 		font-size: 20px;
 		color: #000;
 	}
 
-	&__form-sidebar-input{
-		margin-bottom: 27px;
+	&__form-sidebar-input {
+		margin-bottom: 20px;
 		border: 2px solid #e9ab74;
 		border-radius: 8px;
 		padding: 10px 15px 10px 15px;
 		background: #fff;
 	}
 
-	&__form-sidebar-button{
+	&__form-sidebar-button {
 		width: 238px;
 		padding: 12px 21px;
 		border-radius: 12px;
@@ -49,5 +48,13 @@
 		font-weight: 500;
 		font-size: 16px;
 		color: #fff;
+		margin-bottom: 25px;
+	}
+
+	&__form-sidebar-placeholder {
+		margin-bottom: 27px;
+		border: 2px solid #e9ab74;
+		border-radius: 8px;
+		height: 70px;
 	}
 }

@@ -1,26 +1,26 @@
-.tableproducts{
+.tableproducts {
 	margin-top: 50px;
-    display: flex;
+	display: flex;
 	flex-direction: column;
-	&__table{
+	&__table {
 		display: flex;
 		flex-direction: column;
 		border: 2px solid #e9ab74;
 		border-radius: 12px;
 		background: rgba(233, 171, 116, 0.13);
-		width: 896px;
-		height: 806px;
+		width: 950px;
+		height: 852px;
 	}
-	&__title{
+	&__title {
 		padding-top: 11px;
 		padding-bottom: 11px;
-       	text-align: center;
+		text-align: center;
 		font-weight: 500;
 		font-size: 20px;
 		color: #000;
 	}
 
-	&__thead-list{
+	&__thead-list {
 		display: flex;
 		align-items: center;
 		justify-content: space-around;
@@ -32,8 +32,69 @@
 		background: #fff;
 	}
 
-	&__thead-list-item{
-
+	&__thead-list-item {
+		display: flex;
+		align-items: center;
+		justify-content: center;
 	}
 
+	&__tbody {
+		margin-top: 20px;
+	}
+
+	&__tbody-list {
+		display: flex;
+		align-items: center;
+		gap: 22px;
+		padding: 12px 0;
+		margin-left: 25px;
+		margin-right: 25px;
+	}
+	&__tbody-list-item {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		border: 1px solid #e9ab74;
+		border-radius: 12px;
+		background: #fff;
+		padding: 12px 0;
+		height: 47px;
+
+		&-48 {
+			width: 48px;
+		}
+		&-162 {
+			width: 155px;
+		}
+
+		&-140 {
+			width: 125px;
+		}
+
+		&-120 {
+			width: 120px;
+		}
+
+		&-125 {
+			width: 125px;
+		}
+
+		&-90 {
+			width: 97px;
+		}
+	}
+
+	&__tbody-list-button {
+		margin-right: 15px;
+	}
+}
+
+.separator {
+	display: inline-block;
+	width: 1px;
+	height: 16px;
+	background-color: #e9ab74;
+	margin-left: 25px;
+	margin-right: 5px;
+	vertical-align: middle;
 }
