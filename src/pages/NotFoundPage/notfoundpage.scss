@@ -1,0 +1,31 @@
+.notfoundpage{
+	&__wrapper{
+		border:1px solid #E9AB74;
+		border-radius: 12px;
+		margin-top: 115px;
+		margin-bottom: 115px;
+		display: flex;
+		align-items: center;
+		flex-direction: column;
+	}
+
+	&__title{
+		color:#d88034;
+		padding-top: 55px;
+		padding-bottom: 55px;
+	}
+    &__text{
+		padding-top: 20px;
+		padding-bottom: 20px;
+		font-size: 24px;
+		color:#d88034;
+	}
+
+	&__link{
+		padding-top: 25px;
+		padding-bottom: 55px;
+		color:#d88034;
+		font-size: 20px;
+	}
+
+}

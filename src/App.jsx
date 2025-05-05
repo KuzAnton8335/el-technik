@@ -9,6 +9,7 @@ import Politics from './pages/Politics';
 import LoginPage from './pages/LoginPage';
 import RegistrationPage from './pages/registrationPage';
 import ProductPanel from './pages/ProductPanel';
+import NotFoundPage from './pages/notFoundPage';
 
 const App = () => {
 	return (
@@ -23,6 +24,7 @@ const App = () => {
 				<Route path="/about" element={<AboutAs />} />
 				<Route path="/politics" element={<Politics />} />
 				<Route path="/products/:id" element={<CardPage />} />
+				<Route path="*" element={<NotFoundPage/>} />
 			</Routes>
 	);
 };
