@@ -1,52 +1,136 @@
 import './asideproductpanel.scss';
+import {useState} from 'react';
+import { useDispatch } from 'react-redux';
+import { addProduct } from '../../actions/productAddActions';
 
 export const AsideProductPanel = () => {
+	const dispatch = useDispatch();
+	const [productData, setProductData] = useState({
+		id: '',
+		category: '',
+		title: '',
+		description: '',
+		price: '',
+		quantity: '',
+		image: null,
+	});
+
+	const handleChange = (e) => {
+		const { name, value, files } = e.target;
+		if (name === 'image') {
+			setProductData({ ...productData, [name]: files[0] });
+		} else {
+			setProductData({ ...productData, [name]: value });
+		}
+	};
+
+	const handleSubmit = async (e) => {
+		e.preventDefault();
+		console.log('Отправляемые данные:', productData);
+
+		try {
+			const productToSend = {
+				id: productData.id,
+				category: productData.category,
+				title: productData.title,
+				description: productData.description,
+				price: Number(productData.price),
+				quantity: Number(productData.quantity),
+			};
+
+			console.log('Данные для отправки:', productToSend);
+			await dispatch(addProduct(productToSend));
+
+			alert('Товар успешно добавлен!');
+			setProductData({
+				id: '',
+				category: '',
+				title: '',
+				description: '',
+				price: '',
+				quantity: '',
+				image: null,
+			});
+		} catch (error) {
+			console.error('Ошибка:', error);
+			alert('Ошибка при добавлении товара: ' + error.message);
+		}
+	};
+
 	return (
 		<aside className="aside__sidebar">
 			<h3 className="aside__title">Добавить товар</h3>
-			<form className="aside__form-sidebar">
+			<form className="aside__form-sidebar" onSubmit={handleSubmit}>
 				<label className="aside__form-sidebar-label">1. id - номер товара</label>
 				<input
+					name="id"
 					type="text"
 					className="aside__form-sidebar-input"
 					placeholder="введите id - товара"
+					value={productData.id}
+					onChange={handleChange}
+					required
 				/>
 				<label className="aside__form-sidebar-label">
 					2. наименование товара
 				</label>
 				<input
+					name="title"
 					type="text"
 					className="aside__form-sidebar-input"
 					placeholder=" введите наименование"
+					value={productData.title}
+					onChange={handleChange}
+					required
 				/>
 				<label className="aside__form-sidebar-label">3. категория товара</label>
 				<input
+					name="category"
 					type="text"
 					className="aside__form-sidebar-input"
 					placeholder=" категория"
+					value={productData.category}
+					onChange={handleChange}
+					required
 				/>
 				<label className="aside__form-sidebar-label">4. стоимость товара</label>
 				<input
-					type="text"
+					name="price"
+					type="number"
 					className="aside__form-sidebar-input"
-					placeholder="введите  стоимость "
+					placeholder="введите стоимость"
+					value={productData.price}
+					onChange={handleChange}
+					required
 				/>
 				<label className="aside__form-sidebar-label">5. количество товара</label>
 				<input
-					type="text"
+					name="quantity"
+					type="number"
 					className="aside__form-sidebar-input"
-					placeholder="введите  количество"
+					placeholder="введите количество"
+					value={productData.quantity}
+					onChange={handleChange}
+					required
 				/>
 				<label className="aside__form-sidebar-label">6. Описание товара</label>
-				<textarea className="aside__form-sidebar-placeholder"></textarea>
+				<textarea
+					name="description"
+					className="aside__form-sidebar-placeholder"
+					value={productData.description}
+					onChange={handleChange}
+					required
+				></textarea>
 				<label className="aside__form-sidebar-label">7. Загрузить фото</label>
 				<input
+					name="image"
 					type="file"
 					id="photo-upload"
 					className="aside__form-sidebar-input"
 					accept="image/*"
+					onChange={handleChange}
 				/>
-				<button className="aside__form-sidebar-button">
+				<button type="submit" className="aside__form-sidebar-button">
 					зарегистрировать товар
 				</button>
 			</form>

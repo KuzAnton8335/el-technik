@@ -2,12 +2,14 @@ import { applyMiddleware, combineReducers, compose, createStore } from 'redux';
 import { thunk } from 'redux-thunk';
 import cardReducer from './reducers/cardReducer';
 import productsReducer from './reducers/productsReducer';
+import  productAddReducer  from './reducers/productAddReducer';
 
 // редьюсер для настройки store
 
 const reducer = combineReducers({
 	products: productsReducer,
 	card: cardReducer,
+	add: productAddReducer
 });
 
 // подключаем расширение для redux-devTools compose
