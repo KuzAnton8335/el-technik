@@ -5,14 +5,21 @@ import './asideproductpanel.scss';
 
 export const AsideProductPanel = () => {
 	const dispatch = useDispatch();
+	const categories = [
+		'el.motors',
+		'commutation',
+		'cable',
+		'tools',
+		'other'
+	]
 	const [productData, setProductData] = useState({
 		id: '',
-		category: '',
+		category: categories[0],
 		title: '',
 		description: '',
 		price: '',
 		quantity: '',
-		image: null,
+		image: '',
 	});
 
 	const handleChange = (e) => {
@@ -36,6 +43,7 @@ export const AsideProductPanel = () => {
 				description: productData.description,
 				price: Number(productData.price),
 				quantity: Number(productData.quantity),
+				// image: productData.image
 			};
 
 			console.log('Данные для отправки:', productToSend);
@@ -84,15 +92,19 @@ export const AsideProductPanel = () => {
 					required
 				/>
 				<label className="aside__form-sidebar-label">3. категория товара</label>
-				<input
+				<select
 					name="category"
-					type="text"
 					className="aside__form-sidebar-input"
-					placeholder=" категория"
 					value={productData.category}
 					onChange={handleChange}
 					required
-				/>
+				>
+					{categories.map((category, index) => (
+						<option key={index} value={category}>
+							{category}
+						</option>
+					))}
+				</select>
 				<label className="aside__form-sidebar-label">4. стоимость товара</label>
 				<input
 					name="price"

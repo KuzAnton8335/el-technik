@@ -31,3 +31,33 @@ export const fetchProducts = () => {
 		}
 	};
 };
+
+export const deleteProduct = (id) => async (dispatch) => {
+	try {
+		dispatch({ type: 'DELETE_PRODUCT_REQUEST' });
+		const response = await fetch(`http://localhost:3000/products/${id}`, {
+			method: 'DELETE',
+		});
+		const data = await response.json();
+		dispatch({ type: 'DELETE_PRODUCT_SUCCESS', payload: id });
+	} catch (error) {
+		dispatch({ type: 'DELETE_PRODUCT_FAILURE', payload: error.message });
+	}
+};
+
+export const updateProduct = (id, updatedData) => async (dispatch) => {
+	try {
+		dispatch({ type: 'UPDATE_PRODUCT_REQUEST' });
+		const response = await fetch(`http://localhost:3000/products/${id}`, {
+			method: 'PUT',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify(updatedData),
+		});
+		const data = await response.json();
+		dispatch({ type: 'UPDATE_PRODUCT_SUCCESS', payload: data });
+	} catch (error) {
+		dispatch({ type: 'UPDATE_PRODUCT_FAILURE', payload: error.message });
+	}
+};
