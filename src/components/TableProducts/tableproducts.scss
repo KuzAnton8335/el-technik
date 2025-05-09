@@ -9,7 +9,8 @@
 		border-radius: 12px;
 		background: rgba(233, 171, 116, 0.13);
 		width: 950px;
-		height: 852px;
+		height: 100%;
+		margin-bottom: 35px;
 	}
 	&__title {
 		padding-top: 11px;
@@ -57,8 +58,9 @@
 		border: 1px solid #e9ab74;
 		border-radius: 12px;
 		background: #fff;
-		padding: 12px 0;
-		height: 47px;
+		padding: 12px;
+		height: 55px;
+		font-size: 12px;
 
 		&-48 {
 			width: 48px;

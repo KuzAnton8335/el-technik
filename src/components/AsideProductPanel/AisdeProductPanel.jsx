@@ -1,7 +1,7 @@
-import './asideproductpanel.scss';
-import {useState} from 'react';
+import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { addProduct } from '../../actions/productAddActions';
+import './asideproductpanel.scss';
 
 export const AsideProductPanel = () => {
 	const dispatch = useDispatch();
@@ -121,10 +121,12 @@ export const AsideProductPanel = () => {
 					onChange={handleChange}
 					required
 				></textarea>
-				<label className="aside__form-sidebar-label">7. Загрузить фото</label>
+				<label className="aside__form-sidebar-label">
+					7. Загрузить адрес фото
+				</label>
 				<input
 					name="image"
-					type="file"
+					type="text"
 					id="photo-upload"
 					className="aside__form-sidebar-input"
 					accept="image/*"
