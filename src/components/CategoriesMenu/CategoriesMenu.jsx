@@ -1,35 +1,21 @@
 import './CategoriesMenu.scss';
+import { CATEGORIES} from './categories';
 
-export const CategoriesMenu = () => {
+export const CategoriesMenu = ({ onSelectCategory }) => {
 	return (
 		<div className="categories">
 			<h2 className="categories-title">Категории:</h2>
 			<ul className="categories-list">
-				<li className="categories-item">
-					<a href="#" className="categories-link">
-						1. Электродвигатели
-					</a>
-				</li>
-				<li className="categories-item">
-					<a href="#" className="categories-link">
-						2. Автоматические выключетели
-					</a>
-				</li>
-				<li className="categories-item">
-					<a href="#" className="categories-link">
-						3. Магнитные пусктели
-					</a>
-				</li>
-				<li className="categories-item">
-					<a href="#" className="categories-link">
-						4. Провод, Кабель
-					</a>
-				</li>
-				<li className="categories-item">
-					<a href="#" className="categories-link">
-						5. Ручной инструмент
-					</a>
-				</li>
+				{CATEGORIES.map(category => (
+					<li className="categories-item" key={category.id}>
+						<button
+							className="categories-link"
+							onClick={() => onSelectCategory(category.id)}
+						>
+							{category.id}. {category.name}
+						</button>
+					</li>
+				))}
 			</ul>
 		</div>
 	);
