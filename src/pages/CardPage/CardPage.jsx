@@ -31,7 +31,10 @@ const CardPage = () => {
 	if (!currentProduct) {
 		return <div>Товар не найден</div>;
 	}
-
+	// Определяем,является ли товар кабелем
+	const isCable = currentProduct.category === 'cable' ||
+					currentProduct.type === 'cable'
+	                currentProduct.title.toLowerCase().includes('кабель');
 	return (
 		<div className="cardPage">
 			<Header />
@@ -55,13 +58,13 @@ const CardPage = () => {
 									{currentProduct.subtitle}
 								</h3>
 								<p className="cardPage__quantity">
-									{currentProduct.quantity}
+									Количество: {currentProduct.quantity} {isCable ? 'м' : 'шт'}
 								</p>
 								<p className="cardPage__description">
 									{currentProduct.description}
 								</p>
 								<p className="cardPage__price">
-									{currentProduct.price} ₽
+									Стоимость: {currentProduct.price} ₽
 								</p>
 							</div>
 							<div className="cardPage__buttons">
