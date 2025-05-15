@@ -30,12 +30,12 @@ export const Card = ({ selectedCategory }) => {
 
 	// Функция для получения всех уникальных категорий из продуктов
 	const getCategoriesFromProducts = (items) => {
-		console.log('Extracting categories from:', items);
+		// console.log('Extracting categories from:', items);
 		if (!items || items.length === 0) return [];
 
 		// Получаем все уникальные категории
 		const categories = [...new Set(items.map(product => product.category))];
-		console.log('Extracted categories:', categories);
+		// console.log('Extracted categories:', categories);
 		return categories;
 	};
 

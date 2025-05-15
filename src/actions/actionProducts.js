@@ -19,7 +19,6 @@ export const fetchProductByIdAction = (id) => async (dispatch) => {
 	try {
 		const response = await fetch(`http://localhost:3000/products/${id}`);
 		const data = await response.json();
-		console.log('API Response:', data);
 		dispatch({ type: 'FETCH_PRODUCT_SUCCESS', payload: data });
 	} catch (error) {
 		dispatch({ type: 'FETCH_PRODUCT_FAILURE', error });

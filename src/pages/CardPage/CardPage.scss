@@ -70,3 +70,31 @@
 	left: 50%;
 	transform: translate(-50%, -50%);
 }
+
+.quantity{
+	&__modal{
+		display: flex;
+		flex-direction: column;
+		gap: 20px;
+		align-items: center;
+	}
+
+	&__controls{
+		display: flex;
+		align-items: center;
+		gap: 15px;
+
+		button {
+			padding: 5px 15px;
+			font-size: 18px;
+			cursor: pointer;
+		}
+	}
+
+	&__buttons{
+		display: flex;
+		gap: 15px;
+		width: 100%;
+		justify-content: center;
+	}
+}
