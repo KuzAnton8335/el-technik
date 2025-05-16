@@ -2,16 +2,23 @@ import { ButtonModal } from '../../components/ButtonModal/ButtonModal';
 import { Modal } from '../../components/Modal/Modal';
 import './QuantityModal.scss';
 
-export const QuantityModal = ({ isOpen, onClose, product, quantity, setQuantity }) => {
+export const QuantityModal = ({
+	isOpen,
+	onClose,
+	product,
+	quantity,
+	setQuantity,
+	onAddToCart,
+}) => {
 	const isCable =
 		product.category === 'cable' ||
 		product.type === 'cable' ||
 		(product.title && product.title.toLowerCase().includes('кабель'));
 
-	const handleConfirm = () => {
-		console.log(`Покупка ${quantity} ${isCable ? 'м' : 'шт'} товара`);
-		onClose();
-	};
+	// const handleConfirm = () => {
+	// 	console.log(`Покупка ${quantity} ${isCable ? 'м' : 'шт'} товара`);
+	// 	onClose();
+	// };
 
 	return (
 		<Modal isOpen={isOpen} onClose={onClose}>
@@ -37,7 +44,7 @@ export const QuantityModal = ({ isOpen, onClose, product, quantity, setQuantity 
 				<p>Общая стоимость: {product.price * quantity} ₽</p>
 				<div className="quantity__buttons">
 					<ButtonModal name="Отмена" onClick={onClose} />
-					<ButtonModal name="Подтвердить" onClick={handleConfirm} />
+					<ButtonModal name="Добавить в корзину" onClick={onAddToCart} />
 				</div>
 			</div>
 		</Modal>

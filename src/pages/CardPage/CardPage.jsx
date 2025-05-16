@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
+import { addToCartAction } from '../../actions/actionCart';
 import { fetchProductByIdAction } from '../../actions/actionProducts';
 import { ButtonModal } from '../../components/ButtonModal/ButtonModal';
 import { Loader } from '../../components/Loader/Loader';
@@ -26,7 +27,13 @@ const CardPage = () => {
 
 	const handleBuyClick = () => setIsModalOpen(true);
 	const handleCancel = () => setIsModalOpen(false);
+	// В компоненте CardPage добавьте обработчик для добавления в корзину
+	const handleAddToCart = () => {
+		dispatch(addToCartAction(currentProduct, quantity));
+		setIsModalOpen(false); // Закрываем модальное окно после добавления
+	};
 
+	// Ошибки обработки при загрузке данных
 	if (loading) return <Loader className="loader" />;
 	if (error) return <div>Ошибка: {error.message || 'Неизвестная ошибка'}</div>;
 	if (!currentProduct) return <div>Товар не найден</div>;
@@ -57,6 +64,7 @@ const CardPage = () => {
 				product={currentProduct}
 				quantity={quantity}
 				setQuantity={setQuantity}
+				onAddToCart={handleAddToCart}
 			/>
 		</div>
 	);
