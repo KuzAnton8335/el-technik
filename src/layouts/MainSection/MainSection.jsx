@@ -8,9 +8,14 @@ import './MainSection.scss';
 export const MainSection = () => {
 	const [selectedCategory, setSelectedCategory] = useState(null);
 	const [searchQuery, setSearchQuery] = useState('');
+	const [priceFilter, setPriceFilter] = useState('');
 
 	const handleSearch = (query) => {
 		setSearchQuery(query);
+	};
+
+	const handlePriceChange = (price) => {
+		setPriceFilter(price);
 	};
 
 	return (
@@ -18,7 +23,7 @@ export const MainSection = () => {
 			<div className="container">
 				<div className="main__search">
 					<SearchCategories onSearch={handleSearch} />
-					<SelectCategories />
+					<SelectCategories onChange={handlePriceChange} />
 				</div>
 				<div className="main__wrapper">
 					<div className="main__categories">
@@ -28,6 +33,7 @@ export const MainSection = () => {
 						<Card
 							selectedCategory={selectedCategory}
 							searchQuery={searchQuery}
+							priceFilter={priceFilter}  // Убедитесь, что этот пропс передается
 						/>
 					</div>
 				</div>

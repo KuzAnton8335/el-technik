@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchProductsAction } from '../../actions/actionProducts';
 import { Loader } from "../Loader/Loader";
 
-export const Card = ({ selectedCategory,searchQuery }) => {
+export const Card = ({ selectedCategory, searchQuery, priceFilter }) => {
 	const dispatch = useDispatch();
 	const products = useSelector(state => state.products?.products ?? []);
 	const loading = useSelector(state => state.products?.loading);
@@ -15,14 +15,12 @@ export const Card = ({ selectedCategory,searchQuery }) => {
 		dispatch(fetchProductsAction());
 	}, [dispatch]);
 
-	// Функция получения 4 случайных продуктов
 	const getRandomProducts = (items, count) => {
 		const shuffled = [...items].sort(() => 0.5 - Math.random());
 		return shuffled.slice(0, count);
 	}
 
-	// Модифицируем функцию фильтрации продуктов
-	const getFilteredProducts = (items, selectedCategory, searchQuery = '') => {
+	const getFilteredProducts = (items, selectedCategory, searchQuery = '', priceFilter = '') => {
 		let filtered = [...items];
 
 		// Фильтрация по категории
@@ -30,7 +28,7 @@ export const Card = ({ selectedCategory,searchQuery }) => {
 			filtered = filtered.filter(product => product.category === selectedCategory);
 		}
 
-		// Фильтрация по поисковому запросу (если он есть)
+		// Фильтрация по поисковому запросу
 		if (searchQuery) {
 			const query = searchQuery.toLowerCase();
 			filtered = filtered.filter(product =>
@@ -39,9 +37,14 @@ export const Card = ({ selectedCategory,searchQuery }) => {
 			);
 		}
 
+		// Фильтрация по цене (должна работать!)
+		if (priceFilter) {
+			const priceValue = Number(priceFilter); // Преобразуем в число
+			filtered = filtered.filter(product => product.price <= priceValue);
+		}
+
 		return filtered;
 	};
-
 
 	if (loading) {
 		return <Loader/>;
@@ -51,10 +54,7 @@ export const Card = ({ selectedCategory,searchQuery }) => {
 		return <div>Error: {error?.message || 'Неизвестная ошибка'}</div>;
 	}
 
-	// Фильтруем продукты по выбранной категории и поисковому запросу
-	const filteredProducts = getFilteredProducts(products, selectedCategory, searchQuery);
-
-	// Получаем 4 случайных продукта (или все, если их меньше 4)
+	const filteredProducts = getFilteredProducts(products, selectedCategory, searchQuery, priceFilter);
 	const displayedProducts = filteredProducts.length > 4
 		? getRandomProducts(filteredProducts, 4)
 		: filteredProducts;
@@ -86,7 +86,7 @@ export const Card = ({ selectedCategory,searchQuery }) => {
 					</article>
 				))
 			) : (
-				<div>Нет доступных продуктов в выбранной категории</div>
+				<div>Нет доступных продуктов по выбранным критериям</div>
 			)}
 		</div>
 	);

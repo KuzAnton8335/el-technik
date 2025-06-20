@@ -5,6 +5,11 @@ import { Footer } from '../../layouts/Footer/Footer.jsx';
 import { Header } from '../../layouts/Header/Header.jsx';
 import './Cart.scss';
 
+/**
+ *
+ разобратся с багом корзины почему не удаляется товары с корзины
+ - разобратся с включением админ страницы и работы ее с базой данных
+ */
 const Cart = () => {
 	// Получаем данные корзины из Redux store
 	const { items, total } = useSelector((state) => state.cart);
