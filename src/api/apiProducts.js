@@ -1,7 +1,7 @@
 // Получить все продукты
 export const fetchProducts = async () => {
 	try {
-		const response = await fetch("http://localhost:3000/products");
+		const response = await fetch("http://localhost:3001/elmag/product");
 		if (!response.ok) {
 			throw new Error(`HTTP error! Status: ${response.status}`);
 		}

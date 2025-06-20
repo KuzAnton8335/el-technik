@@ -17,7 +17,7 @@ export const fetchProductsAction = () => async (dispatch) => {
 export const fetchProductByIdAction = (id) => async (dispatch) => {
 	dispatch({ type: 'FETCH_PRODUCT_REQUEST' });
 	try {
-		const response = await fetch(`http://localhost:3000/products/${id}`);
+		const response = await fetch(`http://localhost:3001/elmag/product/id/${id}`);
 		const data = await response.json();
 		dispatch({ type: 'FETCH_PRODUCT_SUCCESS', payload: data });
 	} catch (error) {

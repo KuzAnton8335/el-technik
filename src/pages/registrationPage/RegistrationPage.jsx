@@ -9,6 +9,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { useDispatch } from 'react-redux';
 import { useState } from 'react';
+import axios from 'axios';
 
 // схема регистрации пользователя при помощи yup
 const regFormShema = yup.object().shape({
@@ -36,21 +37,43 @@ const regFormShema = yup.object().shape({
 
 const RegistrationPage = () => {
 	const [serverError, setServerError] = useState(null);
-	const dispatch = useDispatch();
+	const [isLoading, setIsLoading] = useState(false);
+	const [registrationSuccess, setRegistrationSuccess] = useState(false);
 
 	const {
 		register,
 		handleSubmit,
 		formState: { errors },
+		reset,
 	} = useForm({
 		resolver: yupResolver(regFormShema),
-		mode: 'onChange', // или 'onBlur' для валидации при потере фокуса
+		mode: 'onChange',
 	});
 
-	const onSubmit = (data) => {
-		console.log('Форма отправлена:', data);
-		// Здесь можно добавить логику отправки данных на сервер
-		// dispatch(registerUser(data));
+	const onSubmit = async (data) => {
+		setIsLoading(true);
+		setServerError(null);
+
+		try {
+			const response = await axios.post('http://localhost:3001/elmag/user', {
+				userName: data.login,
+				password: data.password
+			});
+
+			console.log('Успешная регистрация:', response.data);
+			setRegistrationSuccess(true);
+			reset(); // Очищаем форму после успешной регистрации
+		} catch (error) {
+			console.error('Ошибка регистрации:', error);
+			if (error.response) {
+				// Ошибка от сервера
+				setServerError(error.response.data.message || 'Ошибка регистрации');
+			} else {
+				setServerError('Не удалось подключиться к серверу');
+			}
+		} finally {
+			setIsLoading(false);
+		}
 	};
 
 	return (

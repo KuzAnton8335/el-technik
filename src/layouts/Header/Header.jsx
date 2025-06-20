@@ -2,6 +2,7 @@ import { ButtonEnter } from '../../components/ButtonEnter/ButtonEnter';
 import { ButtonReg } from '../../components/ButtonReg/ButtonReg';
 import { HeaderLogo } from '../../components/HeaderLogo/HeaderLogo';
 import { HeaderMenu } from '../../components/HeaderMenu/HeaderMenu';
+import { HeaderLogin } from '../../components/HeaderLogin/HeaderLogin';
 import './Header.scss';
 import { NavLink } from 'react-router-dom';
 
@@ -18,7 +19,9 @@ export const Header = () => {
 					<NavLink to="/registration">
 						<ButtonReg name="Регистрация" />
 					</NavLink>
+					<HeaderLogin />
 				</div>
+
 			</div>
 		</header>
 	);

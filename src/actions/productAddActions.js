@@ -3,7 +3,7 @@ export const RESET_PRODUCT_FORM = "RESET_PRODUCT_FORM";
 
 export const addProduct = (productData) => async (dispatch) => {
 	try {
-		const response = await fetch('http://localhost:3000/products', {
+		const response = await fetch('http://localhost:3001/elmag/product', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',

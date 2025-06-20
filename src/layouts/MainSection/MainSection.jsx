@@ -5,22 +5,30 @@ import { SelectCategories } from '../../components/SelectCategories/SelectCatego
 import { useState } from 'react';
 import './MainSection.scss';
 
-
 export const MainSection = () => {
 	const [selectedCategory, setSelectedCategory] = useState(null);
+	const [searchQuery, setSearchQuery] = useState('');
+
+	const handleSearch = (query) => {
+		setSearchQuery(query);
+	};
+
 	return (
 		<main className="main">
 			<div className="container">
 				<div className="main__search">
-					<SearchCategories />
+					<SearchCategories onSearch={handleSearch} />
 					<SelectCategories />
 				</div>
 				<div className="main__wrapper">
 					<div className="main__categories">
-						<CategoriesMenu  onSelectCategory={setSelectedCategory}  />
+						<CategoriesMenu onSelectCategory={setSelectedCategory} />
 					</div>
 					<div className="main__card">
-						<Card selectedCategory={selectedCategory}/>
+						<Card
+							selectedCategory={selectedCategory}
+							searchQuery={searchQuery}
+						/>
 					</div>
 				</div>
 			</div>

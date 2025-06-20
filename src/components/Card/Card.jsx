@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchProductsAction } from '../../actions/actionProducts';
 import { Loader } from "../Loader/Loader";
 
-export const Card = ({ selectedCategory }) => {
+export const Card = ({ selectedCategory,searchQuery }) => {
 	const dispatch = useDispatch();
 	const products = useSelector(state => state.products?.products ?? []);
 	const loading = useSelector(state => state.products?.loading);
@@ -15,48 +15,33 @@ export const Card = ({ selectedCategory }) => {
 		dispatch(fetchProductsAction());
 	}, [dispatch]);
 
-
-	// Функция для получения категории конкретного продукта по ID
-	const getProductCategory = (items, productId) => {
-		console.log('Getting category for product:', productId);
-		const product = items.find(item => item.id === productId);
-		if (!product) {
-			console.log('Product not found');
-			return null;
-		}
-		console.log('Found category:', product.category);
-		return product.category;
-	};
-
-	// Функция для получения всех уникальных категорий из продуктов
-	const getCategoriesFromProducts = (items) => {
-		// console.log('Extracting categories from:', items);
-		if (!items || items.length === 0) return [];
-
-		// Получаем все уникальные категории
-		const categories = [...new Set(items.map(product => product.category))];
-		// console.log('Extracted categories:', categories);
-		return categories;
-	};
-
-	// Функция фильтрации продуктов по категории
-	const getFilteredProducts = (items, selectedCategory) => {
-		// Сначала получаем все категории (опционально, если нужна проверка)
-		const availableCategories = getCategoriesFromProducts(items);
-		// Если категория не выбрана или её нет в списке, возвращаем все товары
-		if (!selectedCategory || !availableCategories.includes(selectedCategory)) {
-			return items;
-		}
-		// Фильтруем по выбранной категории
-		return items.filter(product => product.category === selectedCategory);
-	};
-
-
 	// Функция получения 4 случайных продуктов
 	const getRandomProducts = (items, count) => {
 		const shuffled = [...items].sort(() => 0.5 - Math.random());
 		return shuffled.slice(0, count);
 	}
+
+	// Модифицируем функцию фильтрации продуктов
+	const getFilteredProducts = (items, selectedCategory, searchQuery = '') => {
+		let filtered = [...items];
+
+		// Фильтрация по категории
+		if (selectedCategory) {
+			filtered = filtered.filter(product => product.category === selectedCategory);
+		}
+
+		// Фильтрация по поисковому запросу (если он есть)
+		if (searchQuery) {
+			const query = searchQuery.toLowerCase();
+			filtered = filtered.filter(product =>
+				product.title.toLowerCase().includes(query) ||
+				(product.id && product.id.toString().includes(query))
+			);
+		}
+
+		return filtered;
+	};
+
 
 	if (loading) {
 		return <Loader/>;
@@ -66,8 +51,8 @@ export const Card = ({ selectedCategory }) => {
 		return <div>Error: {error?.message || 'Неизвестная ошибка'}</div>;
 	}
 
-	// Фильтруем продукты по выбранной категории
-	const filteredProducts = getFilteredProducts(products, selectedCategory);
+	// Фильтруем продукты по выбранной категории и поисковому запросу
+	const filteredProducts = getFilteredProducts(products, selectedCategory, searchQuery);
 
 	// Получаем 4 случайных продукта (или все, если их меньше 4)
 	const displayedProducts = filteredProducts.length > 4

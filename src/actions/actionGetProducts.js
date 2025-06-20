@@ -23,7 +23,7 @@ export const fetchProducts = () => {
 		dispatch(fetchProductsRequest());
 		try {
 			// Здесь делаем запрос к вашему API
-			const response = await fetch('http://localhost:3000/products');
+			const response = await fetch('http://localhost:3001/elmag/product');
 			const data = await response.json();
 			dispatch(fetchProductsSuccess(data));
 		} catch (error) {
@@ -35,7 +35,7 @@ export const fetchProducts = () => {
 export const deleteProduct = (id) => async (dispatch) => {
 	try {
 		dispatch({ type: 'DELETE_PRODUCT_REQUEST' });
-		const response = await fetch(`http://localhost:3000/products/${id}`, {
+		const response = await fetch(`http://localhost:3001/elmag/product/${id}`, {
 			method: 'DELETE',
 		});
 		const data = await response.json();
@@ -48,7 +48,7 @@ export const deleteProduct = (id) => async (dispatch) => {
 export const updateProduct = (id, updatedData) => async (dispatch) => {
 	try {
 		dispatch({ type: 'UPDATE_PRODUCT_REQUEST' });
-		const response = await fetch(`http://localhost:3000/products/${id}`, {
+		const response = await fetch(`http://localhost:3001/elmag/productd/${id}`, {
 			method: 'PUT',
 			headers: {
 				'Content-Type': 'application/json',
