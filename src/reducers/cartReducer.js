@@ -36,9 +36,10 @@ const cartReducer = (state = initialState, action) => {
 		// удаления товара из корзины
 		case REMOVE_FROM_CART: {
 			const existingItemIndex = state.items.findIndex(
-				(item) => item.product.id === action.payload.product.id,
+				(item) => item.product.id === action.payload.product,  // изменен на ProductID
 			);
 			if (existingItemIndex >= 0) {
+				const itemToRemove = state.items[existingItemIndex];
 				const updatedItems = [...state.items];
 				updatedItems[existingItemIndex].quantity -= 1;
 
@@ -49,10 +50,10 @@ const cartReducer = (state = initialState, action) => {
 				return {
 					...state,
 					items: updatedItems,
-					total: state.total - action.payload.product.price,
+					total: state.total - itemToRemove.product.price,
 				};
 			}
-			break; // Этот перерыв необязателен, но может быть сохранен для большей ясности
+			return state;
 		}
 		// очистки корзины
 		case CLEAR_CART: {

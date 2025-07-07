@@ -12,10 +12,10 @@ export const addToCartAction = (product, quantity = 1) => ({
 });
 
 // Удаление товара из корзины
-export const removeFromCartAction = (productId) => ({
+export const removeFromCartAction = (product) => ({
 	type: REMOVE_FROM_CART,
 	payload: {
-		productId,
+		product,
 	},
 });
 
