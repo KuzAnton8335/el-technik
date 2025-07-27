@@ -9,7 +9,8 @@ export const LoginForm = ({
 							  errors,
 							  serverError,
 							  isLoading,
-							  onSubmit
+							  onSubmit,
+							  setServerError
 						  }) => {
 	return (
 		<form className="loginPage__form" onSubmit={handleSubmit(onSubmit)}>
@@ -17,7 +18,7 @@ export const LoginForm = ({
 			<InputLogin
 				placeholder="Логин"
 				{...register('userName', {
-					onChange: () => setServerError(null),
+					onChange: () =>setServerError && setServerError(null),
 				})}
 			/>
 			{errors.userName && <span className="loginPage__error">{errors.userName.message}</span>}
@@ -26,7 +27,7 @@ export const LoginForm = ({
 			<InputPassword
 				placeholder="Пароль"
 				{...register('password', {
-					onChange: () => setServerError(null),
+					onChange: () => setServerError && setServerError(null),
 				})}
 			/>
 			{errors.password && <span className="loginPage__error">{errors.password.message}</span>}
