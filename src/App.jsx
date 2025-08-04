@@ -10,6 +10,7 @@ import LoginPage from './pages/LoginPage';
 import RegistrationPage from './pages/registrationPage';
 import ProductPanel from './pages/ProductPanel';
 import NotFoundPage from './pages/notFoundPage';
+import AdminLogin from './pages/AdminPanel';
 
 const App = () => {
 	return (
@@ -20,6 +21,7 @@ const App = () => {
 				<Route path="/registration" element={<RegistrationPage />} />
 				<Route path="/contacts" element={<Contacts />} />
 				<Route path="/cart" element={<Cart />} />
+				<Route path="/admin-login" element={<AdminLogin />} />
 				<Route path="/productpanel" element={<ProductPanel />} />
 				<Route path="/about" element={<AboutAs />} />
 				<Route path="/politics" element={<Politics />} />

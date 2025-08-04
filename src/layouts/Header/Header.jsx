@@ -21,7 +21,6 @@ export const Header = () => {
 					</NavLink>
 					<HeaderLogin />
 				</div>
-
 			</div>
 		</header>
 	);

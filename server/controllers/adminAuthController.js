@@ -1,6 +1,7 @@
-const UserAdmin = require('../models/UserAdmin');
 const jwt = require('jsonwebtoken');
+const UserAdmin = require('../models/UserAdmin');
 const bcrypt = require('bcryptjs');
+const ErrorResponse = require('../utils/errorResponse');
 
 // @desc    Авторизация администратора
 // @route   POST /api/v1/admin/auth
@@ -28,7 +29,6 @@ exports.login = async (req, res, next) => {
 		}
 
 		// Проверяем пароль (в данном случае жестко заданный пароль)
-		// В реальном приложении нужно использовать хеширование!
 		if (password !== '103rt103') {
 			return res.status(401).json({
 				success: false,

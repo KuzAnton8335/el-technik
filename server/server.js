@@ -37,7 +37,7 @@ const authUser = require('./routes/userLogin');
 app.use('/elmag', authUser);
 
 // вход администратора
-app.use('/elmag/admin', adminRoutes);
+app.use('/elmag/useradmins', adminRoutes);
 
 // порт
 const PORT = process.env.PORT || 3001;

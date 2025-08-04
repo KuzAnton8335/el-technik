@@ -1,0 +1,62 @@
+.admin-login{
+
+	&__wrapper{
+		min-height: 540px;
+		height: 100%;
+		border: 2px solid #e9ab74;
+		border-radius: 12px;
+		margin-top: 100px;
+		margin-bottom: 60px;
+		position: relative;
+	}
+
+	&__admin{
+		position: absolute;
+		top: 56px;
+		left: 50%;
+		transform: translate(-50%);
+	}
+
+	&__title{
+		padding-bottom: 30px;
+	}
+
+	&__form-group{
+		display: flex;
+		flex-direction: column;
+	}
+
+	&__label{
+		padding-top: 12px;
+		padding-bottom: 12px;
+		padding-left: 25px;
+		font-size: 18px;
+	}
+
+	&__inputName{
+		border: 2px solid #e9ab74;
+		border-radius: 8px;
+		width: 336px;
+		height: 48px;
+		padding: 14px 0 14px 24px;
+	}
+
+	&__inputPassword{
+		border: 2px solid #e9ab74;
+		border-radius: 8px;
+		width: 336px;
+		height: 48px;
+		padding: 14px 0 14px 24px;
+	}
+
+	&__enter{
+		margin-top: 27px;
+		margin-left: 25%;
+		width: 153px;
+		padding:12px 0  12px;
+		background-color: #16bedc;
+		color:#fff;
+		border-radius: 12px;
+	}
+
+}
