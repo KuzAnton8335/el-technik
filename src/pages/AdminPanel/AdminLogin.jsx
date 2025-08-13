@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './AdminLogin.scss';
 import { Header } from '../../layouts/Header/Header.jsx';
-import {Footer} from '../../layouts/Footer/Footer.jsx';
+import { Footer } from '../../layouts/Footer/Footer.jsx';
 import { ButtonExit } from '../../components/ButtonExit/ButtonExit.jsx';
 
 const AdminLogin = () => {
@@ -11,6 +11,7 @@ const AdminLogin = () => {
 		password: ''
 	});
 	const [error, setError] = useState('');
+	const [loading, setLoading] = useState(false);  // Добавляем состояние загрузки
 	const navigate = useNavigate();
 
 	const { useradmin, password } = formData;
@@ -21,27 +22,34 @@ const AdminLogin = () => {
 
 	const onSubmit = async (e) => {
 		e.preventDefault();
+		setLoading(true); // Начинаем загрузку
+
 		try {
 			const res = await fetch("http://localhost:3001/elmag/useradmins/auth", {
 				method: "POST",
 				headers: { "Content-Type": "application/json" },
 				body: JSON.stringify(formData),
 			});
+
 			const data = await res.json();
-			if (!res.ok) throw new Error(data.error || "Ошибка входа");
+
+			if (!res.ok) {
+				throw new Error(data.error || "Ошибка входа");
+			}
+
 			localStorage.setItem("adminToken", data.token);
-			navigate("/productpanel");
+			navigate("/productpanel"); // Перенаправляем на панель продуктов
 		} catch (err) {
 			console.error('AdminLogin error:', err);
 			setError(err.message || "Произошла ошибка при входе");
+		} finally {
+			setLoading(false); // Заканчиваем загрузку
 		}
 	};
 
-
-	// проверить вход для админа!!!!
 	return (
 		<div className="admin-login">
-			<Header/>
+			<Header />
 			<div className="container">
 				<div className="admin-login__wrapper">
 					<div className="loginPage__exit">
@@ -73,15 +81,17 @@ const AdminLogin = () => {
 									required
 								/>
 							</div>
-							<button type="submit" className="admin-login__enter">Войти</button>
+							<button type="submit" className="admin-login__enter" disabled={loading}>
+								{loading ? 'Загрузка...' : 'Войти'}
+							</button>
 						</form>
 					</div>
 				</div>
-
 			</div>
-			<Footer/>
+			<Footer />
 		</div>
 	);
 };
 
 export default AdminLogin;
+
