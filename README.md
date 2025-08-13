@@ -42,27 +42,29 @@ cd el-technik
 
 ### Структура проекта
 
-├── backend/ Node.js сервер
-│ ├── config/ Конфигурации (DB, JWT)
-│ ├── controllers/ Логика обработки запросов
-│ ├── models/ Mongoose модели
-│ ├── routes/ API endpoints
-│ ├── middleware/ Промежуточное ПО
-│ ├── utils/ Вспомогательные функции
-│ └── server.js Запуск сервера
-
-├── frontend/ React приложение
-│ ├── public/ Статические файлы
-│ ├── src/
-│ │ ├── assets/ Изображения, стили
-│ │ ├── components/ UI компоненты
-│ │ ├── actions/ активация запросов
-│ │ ├── api / api для получения продуктов
-│ │ ├── pages/ Страницы приложения
-│ │ ├── layouts/ Основные слои для страниц
-│ │ ├── store/ Redux store
-│ │ ├── reducers/ вспомогательные функции для Redux store
-│ │ ├── styles/ стили проекта
-│ │ ├── App.js Главный компонент
-│ │ └── main.js Точка входа
-│ └── ...
+```
+├── backend/                          # Node.js сервер
+│   ├── config/                       # Конфигурации (DB, JWT)
+│   ├── controllers/                  # Логика обработки запросов
+│   ├── models/                       # Mongoose модели
+│   ├── routes/                       # API endpoints
+│   ├── middleware/                   # Промежуточное ПО
+│   ├── utils/                        # Вспомогательные функции
+│   └── server.js                     # Запуск сервера
+│
+├── frontend/                         # React приложение
+│   ├── public/                       # Статические файлы
+│   ├── src/
+│   │   ├── assets/                   # Изображения, стили
+│   │   ├── components/              # UI компоненты
+│   │   ├── actions/                  # Активация запросов
+│   │   ├── api/                      # API для получения продуктов
+│   │   ├── pages/                    # Страницы приложения
+│   │   ├── layouts/                  # Основные слои для страниц
+│   │   ├── store/                    # Redux store
+│   │   ├── reducers/                 # Вспомогательные функции для Redux store
+│   │   ├── styles/                   # Стили проекта
+│   │   ├── App.js                    # Главный компонент
+│   │   └── main.js                   # Точка входа
+│   └── ...
+```
