@@ -10,7 +10,7 @@ import { LoginPage } from './pages/loginPage/loginPage';
 import NotFoundPage from './pages/NotFoundPage';
 import Politics from './pages/Politics';
 import ProductPanel from './pages/ProductPanel';
-import { RegistrationPage } from './pages/RegistrationPage/RegistrationPage';
+import { RegistrationPage } from './pages/RegistrationPage/RegistrationPage.jsx';
 
 const App = () => {
 	return (
