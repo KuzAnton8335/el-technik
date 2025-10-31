@@ -71,5 +71,5 @@ cd el-technik
 
 ### вход для администратора
 
-Admin:elmagadmin
-password:103rt103
+- Admin:elmagadmin
+- password:103rt103
