@@ -1,15 +1,14 @@
-import "./registrationPage.scss";
-import { Header } from '../../layouts/Header/Header.jsx';
-import { Footer } from '../../layouts/Footer/Footer.jsx';
+import { yupResolver } from '@hookform/resolvers/yup';
+import axios from 'axios';
+import { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import * as yup from 'yup';
 import { ButtonExit } from '../../components/ButtonExit/ButtonExit.jsx';
 import { InputLogin } from '../../components/InputLogin/InputLogin.jsx';
 import { InputPassword } from '../../components/InputPassword/InputPassword.jsx';
-import { useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from 'yup';
-import { useDispatch } from 'react-redux';
-import { useState } from 'react';
-import axios from 'axios';
+import { Footer } from '../../layouts/Footer/Footer.jsx';
+import { Header } from '../../layouts/Header/Header.jsx';
+import './registrationPage.scss';
 
 // схема регистрации пользователя при помощи yup
 const regFormShema = yup.object().shape({
@@ -35,7 +34,7 @@ const regFormShema = yup.object().shape({
 		.oneOf([yup.ref('password'), null], 'Пароли не совпадают'),
 });
 
-const RegistrationPage = () => {
+export const RegistrationPage = () => {
 	const [serverError, setServerError] = useState(null);
 	const [isLoading, setIsLoading] = useState(false);
 	const [registrationSuccess, setRegistrationSuccess] = useState(false);
@@ -57,7 +56,7 @@ const RegistrationPage = () => {
 		try {
 			const response = await axios.post('http://localhost:3001/elmag/user', {
 				userName: data.login,
-				password: data.password
+				password: data.password,
 			});
 
 			console.log('Успешная регистрация:', response.data);
@@ -86,23 +85,36 @@ const RegistrationPage = () => {
 					</div>
 					<div className="registrationPage__login">
 						<h2 className="registrationPage__title">Зарегистрироваться</h2>
-						{serverError && <div className="registrationPage__serverError">{serverError}</div>}
-						<form className="registrationPage__form" onSubmit={handleSubmit(onSubmit)}>
-							<label className="registrationPage__label">Введите логин</label>
+						{serverError && (
+							<div className="registrationPage__serverError">
+								{serverError}
+							</div>
+						)}
+						<form
+							className="registrationPage__form"
+							onSubmit={handleSubmit(onSubmit)}
+						>
+							<label className="registrationPage__label">
+								Введите логин
+							</label>
 							<InputLogin
 								placeholder="Логин"
 								{...register('login')}
 								error={errors.login?.message}
 							/>
 
-							<label className="registrationPage__label">Введите пароль</label>
+							<label className="registrationPage__label">
+								Введите пароль
+							</label>
 							<InputPassword
 								placeholder="Пароль"
 								{...register('password')}
 								error={errors.password?.message}
 							/>
 
-							<label className="registrationPage__label">Повторите пароль</label>
+							<label className="registrationPage__label">
+								Повторите пароль
+							</label>
 							<InputPassword
 								placeholder="Повторите пароль"
 								{...register('passcheck')}
@@ -120,5 +132,3 @@ const RegistrationPage = () => {
 		</div>
 	);
 };
-
-export default RegistrationPage;
