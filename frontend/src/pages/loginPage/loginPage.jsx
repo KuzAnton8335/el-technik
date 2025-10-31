@@ -1,15 +1,15 @@
 // src/pages/LoginPage/LoginPage.jsx
-import "./loginPage.scss";
-import { Header } from '../../layouts/Header/Header.jsx';
-import { ButtonExit } from '../../components/ButtonExit/ButtonExit.jsx';
-import { Footer } from '../../layouts/Footer/Footer.jsx';
-import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useState } from 'react';
+import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
+import { ButtonExit } from '../../components/ButtonExit/ButtonExit.jsx';
+import { Footer } from '../../layouts/Footer/Footer.jsx';
+import { Header } from '../../layouts/Header/Header.jsx';
+import { loginUser } from './api.js';
+import { LoginForm } from './LoginForm.jsx';
+import './loginPage.scss';
 import { loginSchema } from './validationShema.js';
-import { loginUser } from './api';
-import { LoginForm } from './LoginForm';
 
 const LoginPage = () => {
 	const [serverError, setServerError] = useState(null);
@@ -22,7 +22,7 @@ const LoginPage = () => {
 		formState: { errors },
 	} = useForm({
 		resolver: yupResolver(loginSchema),
-		mode: 'onChange'
+		mode: 'onChange',
 	});
 
 	const onSubmit = async (data) => {

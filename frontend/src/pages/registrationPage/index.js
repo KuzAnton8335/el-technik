@@ -1,3 +1,2 @@
-
-import RegistrationPage from './registrationPage';
+import RegistrationPage from './RegistrationPage';
 export default RegistrationPage;
