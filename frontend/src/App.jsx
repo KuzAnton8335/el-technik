@@ -6,7 +6,7 @@ import Cart from './pages/Cart';
 import Catalog from './pages/Catalog';
 import Contacts from './pages/Contacts';
 import { IndexPage } from './pages/Index';
-import LoginPage from './pages/LoginPage/LoginPage';
+import LoginPage from './pages/LoginPage/LoginPage.jsx';
 import NotFoundPage from './pages/NotFoundPage';
 import Politics from './pages/Politics';
 import ProductPanel from './pages/ProductPanel';
