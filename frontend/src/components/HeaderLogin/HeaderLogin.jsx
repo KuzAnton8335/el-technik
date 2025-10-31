@@ -1,7 +1,7 @@
 import axios from 'axios';
 import Cookies from 'js-cookie'; // Импортируем библиотеку js-cookie
 import { useEffect, useState } from 'react';
-import './HeaderLogin.scss';
+import './login.scss';
 
 export const HeaderLogin = () => {
 	const [user, setUser] = useState(null);
