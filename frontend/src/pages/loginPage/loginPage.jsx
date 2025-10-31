@@ -11,7 +11,7 @@ import { LoginForm } from './LoginForm.jsx';
 import './loginPage.scss';
 import { loginSchema } from './validationShema.js';
 
-const LoginPage = () => {
+export const LoginPage = () => {
 	const [serverError, setServerError] = useState(null);
 	const [isLoading, setIsLoading] = useState(false);
 	const navigate = useNavigate();
@@ -70,5 +70,3 @@ const LoginPage = () => {
 		</div>
 	);
 };
-
-export default LoginPage;
